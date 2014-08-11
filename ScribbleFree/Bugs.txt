@@ -1,0 +1,1 @@
+1. While deleting multiple notes the app leaves the first note and deletes the rest

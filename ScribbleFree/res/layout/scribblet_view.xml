@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/action_mode_list_selector"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    
+<RelativeLayout
+    android:id="@+id/date"
+    android:layout_width="100dp"
+    android:layout_alignParentRight="true"
+    android:layout_height="fill_parent"
+    android:text="@string/null_string"
+    android:paddingLeft="@dimen/padding_large"
+    android:paddingTop="@dimen/padding_medium"
+    >
+    	<TextView 
+    	    android:id="@+id/day"
+    	    android:layout_alignParentLeft="true"
+    	    android:layout_height="match_parent"
+    	    android:layout_width="wrap_content"
+    	    android:textSize="25sp"
+    	    android:textStyle="bold"
+    	    android:textColor="@color/grey_dark"
+    	    android:layout_marginRight="5dp"
+    	       	    
+    	    />
+    	<TextView 
+    	    android:id="@+id/month"
+    	    android:layout_toRightOf="@+id/day"
+    	    android:layout_width="match_parent"
+    	    android:textColor="@color/grey_dark"
+    	    android:layout_height="wrap_content"
+    	    	    />
+    	<TextView 
+    	    android:id="@+id/year"
+    	    android:layout_below="@+id/month"
+    	    android:layout_toRightOf="@+id/day"
+    	    android:layout_width="match_parent"
+    	    android:textColor="@color/grey_dark"
+    	    android:layout_height="wrap_content"
+    	  
+    	    />
+    	
+    </RelativeLayout>
+<TextView 
+    android:id="@+id/title"
+    android:layout_toLeftOf="@id/date"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/null_string"
+    android:textStyle="bold"
+    android:textColor="@color/grey_dark"
+    android:paddingTop="@dimen/padding_medium"
+    android:paddingLeft="@dimen/padding_medium"
+    
+    />
+<TextView 
+    android:id="@+id/content"
+    android:layout_below="@id/title"
+    android:layout_toLeftOf="@id/date"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/padding_medium"
+    android:paddingLeft="@dimen/padding_medium"
+    android:text="@string/null_string"
+    android:textColor="@color/title_stip_color_4"
+    />
+
+<TextView
+    android:id="@+id/row_id_hidden"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="invisible" />
+
+</RelativeLayout>

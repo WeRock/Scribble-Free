@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+     <item
+       android:id="@+id/menu_move_to_locker"
+       android:icon="@drawable/ic_move_to_locker"
+       android:title="@string/mnu_move_to_locker"
+       android:showAsAction="always"
+       />
+   <item
+       android:id="@+id/menu_delete"
+       android:icon="@drawable/ic_action_discard"
+       android:title="@string/mnu_delete"
+       android:showAsAction="always"
+       />
+    
+
+</menu>

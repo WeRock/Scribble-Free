@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Scribble Free</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+    
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Home</item>
+        <item >To Do</item>
+        <item >Locker</item>
+        <item >Scraps</item>
+        <item >Settings</item>
+        <item >What\'s New</item>
+    </string-array>
+    
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_todo_small</item>
+        <item>@drawable/ic_locker_small</item>
+        <item>@drawable/ic_handwriting_small</item>
+        <item>@drawable/ic_settings_small</item>
+        <item>@drawable/ic_whats_hot</item>
+    </array>
+    
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="welcome_message">Type in the box to search</string>
+    <string name="search_box_text">Search Here!</string>
+    <string name="null_string"></string>
+    <string name="first_string">First</string>
+    <string name="second_string">Second</string>
+    <string name="notes">NOTES</string>
+	<string name="message_box_close">X</string>
+	<string name="message_box_create">CREATE</string>
+	<string name="message_box_message">Quick Scribble</string>
+	<string name="title">Title</string>
+	<string name="content">Content</string>
+	<string name="mnu_delete">Delete</string>
+	<string name="mnu_move_to_locker">Secure</string>
+	<string name="no_notes_text">Looks like you have not created any notes. Hit the button below and start making notes.</string>
+	<string name="no_access_text">Oops the pasword you entered is not right. You will not be able to see the contents of the locker unless you type the correct password.</string>
+	<string name="keypad_one">1</string>
+	<string name="keypad_two">2</string>
+	<string name="keypad_three">3</string>
+	<string name="keypad_four">4</string>
+	<string name="keypad_five">5</string>
+	<string name="keypad_six">6</string>
+	<string name="keypad_seven">7</string>
+	<string name="keypad_eight">8</string>
+	<string name="keypad_nine">9</string>
+	<string name="keypad_zero">0</string>
+	<string name="keypad_ok">OK</string>
+	<string name="keypad_clear_all">Clear</string>
+	<string name="keypad_back">Back</string>
+	<string name="locker_hint">Enter you password to continue to the locker.</string>
+	<string name="start_new">New</string>
+	<string name="brush">Brush</string>
+	<string name="erase">Erase</string>
+	<string name="save">Save</string>
+	<string name="paint">Paint</string>
+	<string name="sml">Small</string>
+	<string name="med">Medium</string>
+	<string name="lrg">Large</string>
+	<string name="bullet">Bullet</string>
+</resources>
