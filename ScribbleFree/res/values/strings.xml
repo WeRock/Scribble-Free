@@ -68,4 +68,7 @@
 	<string name="med">Medium</string>
 	<string name="lrg">Large</string>
 	<string name="bullet">Bullet</string>
+	<string name="leftIndent">Left Indentation</string>
+	<string name="rightIndent">Right Indentation</string>
+	<string name="medium_indent">temp</string>
 </resources>

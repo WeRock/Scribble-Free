@@ -1,2 +1,4 @@
 1. While deleting multiple notes the app leaves the first note and deletes the rest
-2. While adding bullets via enter key the two bullets are created instead of one
+2. While adding bullets via enter key the two bullets are created instead of one (Fixed)
+3. Soft Keyboard key press not working (Fixed)
+4. While on caps lock or shift mode enter and back buttons do not work.

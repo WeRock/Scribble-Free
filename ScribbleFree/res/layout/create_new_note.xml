@@ -45,18 +45,45 @@
             android:layout_below="@id/create_note_content_heading"
             android:layout_above="@+id/bottomOptiosBar"
             />
-        <RelativeLayout
-            android:id="@+id/bottomOptiosBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            >            
-        <Button 
-            android:id="@+id/bulletBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bullet"
-            android:onClick="addBullet"
-            />   
-  		</RelativeLayout>
+               
+            <HorizontalScrollView
+                android:id="@+id/bottomOptiosBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+               >  
+               <LinearLayout
+                   android:id="@+id/bottonBar"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   style="?android:attr/buttonBarStyle"
+                    >    
+		        <ImageButton 
+		            android:id="@+id/bulletBtn"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:onClick="addBullet"
+		            android:contentDescription="@string/bullet"
+		            android:src="@drawable/ic_bullet_view"
+		            style="?android:attr/buttonBarButtonStyle"
+		           /> 
+		        <Button 
+		            android:id="@+id/leftIndentBtn"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/leftIndent"
+		            android:onClick="addLeftIndent"
+		            style="?android:attr/buttonBarButtonStyle"
+		            />  
+		        <Button 
+		            android:id="@+id/rightIndentBtn"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/rightIndent"
+		            android:onClick="addRightIndent"
+		            style="?android:attr/buttonBarButtonStyle"
+		            /> 
+		           </LinearLayout>
+		    </HorizontalScrollView>
+  		
 </RelativeLayout>

@@ -64,6 +64,7 @@
     android:paddingBottom="@dimen/padding_medium"
     android:paddingLeft="@dimen/padding_medium"
     android:text="@string/null_string"
+    android:maxLines="1"
     android:textColor="@color/title_stip_color_4"
     />
 
