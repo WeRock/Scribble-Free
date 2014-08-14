@@ -64,25 +64,45 @@
 		            android:layout_height="wrap_content"
 		            android:onClick="addBullet"
 		            android:contentDescription="@string/bullet"
-		            android:src="@drawable/ic_bullet_view"
+		            android:src="@drawable/bullet_list"
 		            style="?android:attr/buttonBarButtonStyle"
 		           /> 
-		        <Button 
-		            android:id="@+id/leftIndentBtn"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/leftIndent"
-		            android:onClick="addLeftIndent"
-		            style="?android:attr/buttonBarButtonStyle"
-		            />  
-		        <Button 
+		        <ImageButton 
 		            android:id="@+id/rightIndentBtn"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="@string/rightIndent"
+		            android:contentDescription="@string/rightIndent"
 		            android:onClick="addRightIndent"
+		            android:src="@drawable/left_indent"
+		            style="?android:attr/buttonBarButtonStyle"
+		            />  
+		        <ImageButton 
+		            android:id="@+id/leftIndentBtn"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:contentDescription="@string/leftIndent"
+		            android:onClick="addLeftIndent"
+		            android:src="@drawable/right_indent"
 		            style="?android:attr/buttonBarButtonStyle"
 		            /> 
+		       <ImageButton 
+		            android:id="@+id/colorBtn"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:contentDescription="@string/leftIndent"
+		            android:onClick="addColor"
+		            android:src="@drawable/ic_color"
+		            style="?android:attr/buttonBarButtonStyle"
+		            />
+		        <ImageButton 
+		            android:id="@+id/fontBtn"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:contentDescription="@string/leftIndent"
+		            android:onClick="changeFontSize"
+		            android:src="@drawable/ic_font"
+		            style="?android:attr/buttonBarButtonStyle"
+		            />
 		           </LinearLayout>
 		    </HorizontalScrollView>
   		

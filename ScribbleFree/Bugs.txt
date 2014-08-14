@@ -2,3 +2,6 @@
 2. While adding bullets via enter key the two bullets are created instead of one (Fixed)
 3. Soft Keyboard key press not working (Fixed)
 4. While on caps lock or shift mode enter and back buttons do not work.
+5. Saving the spannable colors
+6. Fixing the Size of color Picker
+7. Handling the indentations while no content is present in the edit text

@@ -286,8 +286,7 @@ public class ScribbleHome extends Activity {
 		
 		SharedPreferences prefs = getSharedPreferences(Constants.SCRIBBLE_PREFS, 0);
 		String password = prefs.getString(Constants.PASS_KEY,"12345");
-		if(password.equals(pass)){
-	
+		if(password.equals(pass)){	
 			FragmentManager manager = getFragmentManager();
 			FragmentTransaction ftr= manager.beginTransaction();
 			ftr.replace(R.id.frame_container,new LockerViewFragment());
