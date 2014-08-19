@@ -1,11 +1,19 @@
 package com.sandeepmahanty.scribblefree.model;
 
-import android.os.Bundle;
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.*;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.SweepGradient;
+import android.os.Bundle;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 
 public class ColorPicker extends Dialog {
 
@@ -21,7 +29,9 @@ public class ColorPicker extends Dialog {
 		private Paint mCenterPaint;
 		private final int[] mColors;
 		private OnColorChangedListener mListener;
-	        
+	    private final int MPAINT_WIDTH=100;
+	    private final int MPAINT_CENTER_WIDTH=5;
+	    
 		ColorPickerView(Context c, OnColorChangedListener l, int color) {
 			super(c);
 			mListener = l;
@@ -34,11 +44,11 @@ public class ColorPicker extends Dialog {
 	       	mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	       	mPaint.setShader(s);
 	       	mPaint.setStyle(Paint.Style.STROKE);
-	       	mPaint.setStrokeWidth(32);
+	       	mPaint.setStrokeWidth(MPAINT_WIDTH);
 	          
 	       	mCenterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	       	mCenterPaint.setColor(color);
-	       	mCenterPaint.setStrokeWidth(5);
+	       	mCenterPaint.setStrokeWidth(MPAINT_CENTER_WIDTH);
 		}
 	        
 		private boolean mTrackingCenter;
@@ -46,13 +56,13 @@ public class ColorPicker extends Dialog {
 	
 		@Override 
 		protected void onDraw(Canvas canvas) {
-			float r = CENTER_X - mPaint.getStrokeWidth()*0.5f;
+			float r = CENTER_X - mPaint.getStrokeWidth();
 	        
 			canvas.translate(CENTER_X, CENTER_X);
 	            
 			canvas.drawOval(new RectF(-r, -r, r, r), mPaint);            
 			canvas.drawCircle(0, 0, CENTER_RADIUS, mCenterPaint);
-	            
+		            
 			if (mTrackingCenter) {
 				int c = mCenterPaint.getColor();
 				mCenterPaint.setStyle(Paint.Style.STROKE);
@@ -73,13 +83,24 @@ public class ColorPicker extends Dialog {
 		protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 			setMeasuredDimension(CENTER_X*2, CENTER_Y*2);
 		}
+		
+		
 	        
-		private static final int CENTER_X = 100;
-		private static final int CENTER_Y = 100;
-		private static final int CENTER_RADIUS = 32;
+		private final int CENTER_X = getDisplayPoint().x/2 - MPAINT_WIDTH/2;
+		private final int CENTER_Y = CENTER_X;
+		
+		private final int CENTER_RADIUS = CENTER_X*3/10;
 		
 		private int ave(int s, int d, float p) {
 			return s + java.lang.Math.round(p * (d - s));
+		}
+		
+		public Point getDisplayPoint(){
+			WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+			Display display = wm.getDefaultDisplay();
+			Point size = new Point();
+			display.getSize(size);
+			return size;
 		}
 	        
 		private int interpColor(int colors[], float unit) {
@@ -150,6 +171,7 @@ public class ColorPicker extends Dialog {
 		}
 	}
 	
+
 	public ColorPicker(Context context, OnColorChangedListener listener, int initialColor) {
 		super(context);
 	        

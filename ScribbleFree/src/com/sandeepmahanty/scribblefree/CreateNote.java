@@ -45,7 +45,8 @@ public class CreateNote extends Activity implements ColorPicker.OnColorChangedLi
 	private static int INDENT_LEVEL=0;
 	
 	private int START,END;
-	
+	private int CURRENT_COLOR;
+	private int DEFAULT_COLOR;
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
@@ -92,8 +93,8 @@ public class CreateNote extends Activity implements ColorPicker.OnColorChangedLi
 	private void addHtmlElement(int operation){
 		
 		/* Getting the code for the bullet */
-		String bullet=Html.fromHtml(HtmlElements.BULLET_TYPE_FILLED).toString();
-		
+		String bullet=Html.fromHtml(HtmlElements.BULLET_TYPE_FILLED).toString();		
+			
 		/* Getting the current text in the edit text */
 		String text= content.getText().toString();
 		
@@ -104,40 +105,59 @@ public class CreateNote extends Activity implements ColorPicker.OnColorChangedLi
 		case Constants.OPERATION_ADD_BULLET:
 			
 			/* Adding the break and then appending the bullet element */
-			text+=Html.fromHtml("<br/>")+""+Html.fromHtml(HtmlElements.BULLET_TYPE_FILLED)+"\t";
+			text+=Html.fromHtml("<br/>")+""+Html.fromHtml(HtmlElements.BULLET_TYPE_FILLED)+""+Html.fromHtml(HtmlElements.ELEMENT_TYPE_NBSP);
 			
 			INDENT_LEVEL=1;
 			break;
 		case Constants.OPERATION_ADD_LEFT_INDENT:
 			
-			/* Getting the content after last bullet */
-			contentAfterBullet = text.substring(text.lastIndexOf(bullet)+1);
-			
-			/* Removing the space from left side (Dirty work need to make it better */
-			String breakCode= Html.fromHtml("<br/>").toString();
-			
-			if(text.lastIndexOf(breakCode)!=-1){
-				text=text.substring(0, text.lastIndexOf(bullet)-1);
-			}
-			else{
-				text=text.substring(0, text.lastIndexOf(bullet));
-			}
-			
-			/* Generating the final text after removing indent */
-			text+=Html.fromHtml(HtmlElements.BULLET_TYPE_FILLED)+contentAfterBullet;
-						
+			if(text.length()>0 && text!=null){
+				Toast.makeText(getApplication(), "Char: "+text.charAt(content.getSelectionStart()-2)+" Length: "+bullet.length(), Toast.LENGTH_SHORT).show();
+				
+				/* Getting the content after last bullet */
+				contentAfterBullet = text.substring(text.lastIndexOf(bullet)+1);
+				
+				/* Removing the space from left side (Dirty work need to make it better */
+				String breakCode= Html.fromHtml("<br/>").toString();
+				
+				if(text.lastIndexOf(breakCode)!=-1){
+					text=text.substring(0, text.lastIndexOf(bullet)-1);
+				}
+				else{
+					text=text.substring(0, text.lastIndexOf(bullet));
+				}
+				
+				/* Generating the final text after removing indent */
+				text+=Html.fromHtml(HtmlElements.BULLET_TYPE_FILLED)+contentAfterBullet;
+			}			
 			break;
 		case Constants.OPERATION_ADD_RIGHT_INDENT:
+			if(text.length()>0 && text!=null){
+				/* Getting the content after last bullet */
+				contentAfterBullet = text.substring(text.lastIndexOf(bullet)+1);
+				
+				/* Getting the text before last bullet */
+				text=text.substring(0, text.lastIndexOf(bullet));
+				
+				/* Generating the final text after adding indent */
+				text+="\t"+Html.fromHtml(HtmlElements.BULLET_TYPE_FILLED)+contentAfterBullet;
+			}
+			break;
 			
-			/* Getting the content after last bullet */
-			contentAfterBullet = text.substring(text.lastIndexOf(bullet)+1);
-			
-			/* Getting the text before last bullet */
-			text=text.substring(0, text.lastIndexOf(bullet));
-			
-			/* Generating the final text after adding indent */
-			text+="\t"+Html.fromHtml(HtmlElements.BULLET_TYPE_FILLED)+contentAfterBullet;
-			
+		case Constants.OPERATION_ADD_COLOR:
+			if(text.length()>0 && START!=END){
+				String contentBefore = text.substring(0,START);
+				String contentAfter= text.substring(END);
+				String contentToColor=text.substring(START,END);
+				HtmlElements.R=Color.red(CURRENT_COLOR);
+				HtmlElements.G=Color.green(CURRENT_COLOR);
+				HtmlElements.B=Color.blue(CURRENT_COLOR);
+				
+				String completeText="<u>"+contentToColor+"</u>";
+				text= contentBefore+Html.fromHtml(completeText)+contentAfter;
+				Toast.makeText(activity, "Content HTML: "+text,Toast.LENGTH_LONG).show();
+				
+			}
 			break;
 		default:break;
 		}			
@@ -218,7 +238,7 @@ public class CreateNote extends Activity implements ColorPicker.OnColorChangedLi
 	 * @param view the view
 	 */
 	public void addRightIndent(View view){
-		if(INDENT_LEVEL<4){
+		if(INDENT_LEVEL<4 && isListMode){
 			
 			/* Adding the Right indent */
 			addHtmlElement(Constants.OPERATION_ADD_RIGHT_INDENT);
@@ -238,7 +258,7 @@ public class CreateNote extends Activity implements ColorPicker.OnColorChangedLi
 	 * @param view the view
 	 */
 	public void addLeftIndent(View view){
-		if(INDENT_LEVEL>1){
+		if(INDENT_LEVEL>1 && isListMode){
 			
 			/* Removing the right indent */
 			addHtmlElement(Constants.OPERATION_ADD_LEFT_INDENT);
@@ -265,13 +285,16 @@ public class CreateNote extends Activity implements ColorPicker.OnColorChangedLi
 	
 	private void changeColor(int color){
 		
-		Spannable text= new SpannableString(content.getText());
+		CURRENT_COLOR=color;
+		
+		addHtmlElement(Constants.OPERATION_ADD_COLOR);
+		/*Spannable text= new SpannableString(content.getText());
 		if(color!=0){
 			text.setSpan(new ForegroundColorSpan(color), START, END, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
 		content.setText(text);
 		content.setSelection(content.getText().length());		
-		
+		*/
 	}
 	/**
 	 * Changes the font.

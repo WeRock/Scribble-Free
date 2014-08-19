@@ -44,6 +44,8 @@
             android:background="#fff"
             android:layout_below="@id/create_note_content_heading"
             android:layout_above="@+id/bottomOptiosBar"
+            android:padding="@dimen/padding_medium"
+            
             />
                
             <HorizontalScrollView

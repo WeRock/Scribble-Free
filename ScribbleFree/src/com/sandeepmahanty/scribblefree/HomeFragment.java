@@ -180,42 +180,33 @@ public class HomeFragment extends Fragment {
 	private void deleteNotes(ArrayList<Integer> list){
 				
 		Cursor cur=dbHelper.getAllNotes();
-		if(list.size()==1){
-			dbHelper.removeNote(cur.getString(0));
-		}else {
+		do{	
 			
-			while(cur.moveToNext()){
-				for(Integer item:list){
-					
-					if(item==cur.getPosition()){
-						dbHelper.removeNote(cur.getString(0));
-					}
+			for(Integer item :list){
+				if(item==cur.getPosition()){
+					dbHelper.removeNote(cur.getString(0));
 				}
 			}
-		}
+			cur.moveToNext();
+		}while(cur.getPosition()!= cur.getCount());
+		
 		Toast.makeText(getActivity(),"Notes Deleted successfully", Toast.LENGTH_SHORT).show();
 		refreshDataSet();
 	}
 	private void moveToLocker(ArrayList<Integer> list){
 	
 		Cursor cur=dbHelper.getAllNotes();
-		
-		if(list.size()==1){
+		do{	
 			
-			dbHelper.updateNote(cur.getString(0),cur.getString(1),cur.getString(2),cur.getString(4),cur.getString(3),"true");
-		}
-		else {			
-			
-			while(cur.moveToNext()){
-				for(Integer item:list){
-					Log.d("Outside if", "Outside if");
-					if(item==cur.getPosition()){
-						Log.d("Inside if", "Inside if");
-							dbHelper.updateNote(cur.getString(0),cur.getString(1),cur.getString(2),cur.getString(4),cur.getString(3),"true");
-					}
+			for(Integer item :list){
+				if(item==cur.getPosition()){
+					Log.d("Inside if", "Inside if");
+					dbHelper.updateNote(cur.getString(0),cur.getString(1),cur.getString(2),cur.getString(4),cur.getString(3),"true");
 				}
 			}
-		}
+			cur.moveToNext();
+		}while(cur.getPosition()!= cur.getCount());
+		
 		Toast.makeText(getActivity(),"Notes successfully moved to locker", Toast.LENGTH_SHORT).show();
 		refreshDataSet();
 	}

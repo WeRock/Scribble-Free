@@ -12,7 +12,7 @@ public class LockerFragment extends Fragment {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+		
 		super.onCreate(savedInstanceState);
 	}
 	

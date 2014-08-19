@@ -11,7 +11,7 @@ public class Constants {
 	public static final int OPERATION_ADD_BULLET=1;
 	public static final int OPERATION_ADD_LEFT_INDENT=2;
 	public static final int OPERATION_ADD_RIGHT_INDENT=3;
-	public static final int OPERATION_ADD_COLOR=3;
-	public static final int OPERATION_CHANGE_FONT_SIZE=3;
+	public static final int OPERATION_ADD_COLOR=4;
+	public static final int OPERATION_CHANGE_FONT_SIZE=5;
 
 }

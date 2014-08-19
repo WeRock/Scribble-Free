@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -177,44 +178,38 @@ private void displayNotes(View view) {
 	private void deleteNotes(ArrayList<Integer> list){				
 		
 		Cursor cur=dbHelper.getAllSecureNotes();
-		if(list.size()==1){
-			dbHelper.removeNote(cur.getString(0));
-		}else {
+		do{	
 			
-			while(cur.moveToNext()){
-				for(Integer item:list){
-					
-					if(item==cur.getPosition()){
-						dbHelper.removeNote(cur.getString(0));
-					}
+			for(Integer item :list){
+				if(item==cur.getPosition()){
+					dbHelper.removeNote(cur.getString(0));
 				}
 			}
-		}
+			cur.moveToNext();
+		}while(cur.getPosition()!= cur.getCount());
 		
 		Toast.makeText(getActivity(),"Notes Deleted successfully", Toast.LENGTH_SHORT).show();
 		refreshDataSet();
 	}
+	
 	private void moveOutOfLocker(ArrayList<Integer> list){
 	
 		Cursor cur=dbHelper.getAllSecureNotes();
-		
-		if(list.size()==1){
-			dbHelper.updateNote(cur.getString(0),cur.getString(1),cur.getString(2),cur.getString(4),cur.getString(3),"false");
-		}
-		else {			
-		
-			while(cur.moveToNext()){
-				for(Integer item:list){
-					
-					if(item==cur.getPosition()){
-						dbHelper.updateNote(cur.getString(0),cur.getString(1),cur.getString(2),cur.getString(4),cur.getString(3),"false");
-					}
+		do{	
+			
+			for(Integer item :list){
+				if(item==cur.getPosition()){
+					Log.d("Inside if", "Inside if");
+					dbHelper.updateNote(cur.getString(0),cur.getString(1),cur.getString(2),cur.getString(4),cur.getString(3),"false");
 				}
 			}
-		}
+			cur.moveToNext();
+		}while(cur.getPosition()!= cur.getCount());
+		
 		Toast.makeText(getActivity(),"Notes successfully moved out of locker", Toast.LENGTH_SHORT).show();
 		refreshDataSet();
 	}
+	
 	private void removeIfExists(ArrayList<Integer> l,int position){
 		
 		for(int i=0;i<l.size();i++){
